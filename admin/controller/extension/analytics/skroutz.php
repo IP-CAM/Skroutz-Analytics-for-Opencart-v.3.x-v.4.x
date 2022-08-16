@@ -88,6 +88,8 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 
 	protected function validate()
 	{
+		$this->load->language('extension/analytics/skroutz');
+
 		if (!$this->user->hasPermission('modify', 'extension/analytics/skroutz')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -101,25 +103,30 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 
 	public function install()
 	{
-		$this->load->language('extension/analytics/skroutz');
-
-		if (!$this->user->hasPermission('modify', 'extension/extension/analytics')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
+		// Event
 		$this->load->model('setting/event');
+
+		$this->model_setting_event->deleteEventByCode('analytics_skroutz');
 		$this->model_setting_event->addEvent('analytics_skroutz', 'catalog/view/common/success/after', 'extension/analytics/skroutz/success');
+
+		// Permissions
+		$this->load->model('user/user_group');
+
+		$this->model_user_user_group->addPermission($this->user->getGroupId(), 'access', 'extension/analytics/skroutz');
+		$this->model_user_user_group->addPermission($this->user->getGroupId(), 'modify', 'extension/analytics/skroutz');
 	}
 
 	public function uninstall()
 	{
-		$this->load->language('extension/analytics/skroutz');
-
-		if (!$this->user->hasPermission('modify', 'extension/extension/analytics')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
+		// Events
 		$this->load->model('setting/event');
+
 		$this->model_setting_event->deleteEventByCode('analytics_skroutz');
+
+		// Permissions
+		$this->load->model('user/user_group');
+
+		$this->model_user_user_group->removePermission($this->user->getGroupId(), 'access', 'extension/analytics/skroutz');
+		$this->model_user_user_group->removePermission($this->user->getGroupId(), 'modify', 'extension/analytics/skroutz');
 	}
 }
