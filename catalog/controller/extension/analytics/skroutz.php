@@ -35,6 +35,14 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 				$order = $this->model_extension_analytics_skroutz->getOrder($order_id);
 
 				if (isset($order)) {
+					if (!isset($order['shipping'])) {
+						$order['shipping'] = 0;
+					}
+
+					if (!isset($order['tax'])) {
+						$order['tax'] = 0;
+					}
+
 					$data['skroutz']['order_id'] = $order['order_id'];
 					$data['skroutz']['revenue'] = $order['revenue'];
 					$data['skroutz']['shipping'] = $order['shipping'];
