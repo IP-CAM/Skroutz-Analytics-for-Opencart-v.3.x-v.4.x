@@ -40,10 +40,6 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 			$data['error_code'] = '';
 		}
 
-		if (!isset($this->request->get['store_id'])) {
-			$this->request->get['store_id'] = 0;
-		}
-
 		// Breadcrumbs
 		$data['breadcrumbs'] = [];
 
@@ -104,7 +100,7 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 		$this->response->setOutput($this->load->view('extension/analytics/skroutz', $data));
 	}
 
-	protected function validate()
+	public function validate()
 	{
 		$this->load->language('extension/analytics/skroutz');
 
