@@ -4,7 +4,7 @@
  * Shopflix Analytics
  * @author Prionysis
  * @website https://github.com/Prionysis
- * @version 1.0
+ * @version 1.1
  */
 
 class ControllerExtensionAnalyticsSkroutz extends Controller
