@@ -16,9 +16,12 @@ $_['text_edit']        = 'Edit Skroutz Analytics';
 
 // Entry
 $_['entry_code']       = 'Shop Account ID';
+$_['entry_widget']     = 'Reviews Widget';
 $_['entry_status']     = 'Status';
 
-$_['help_entry_code']  = 'SA-XXXX-YYYY';
+// Text
+$_['text_inline'] = 'Inline';
+$_['text_extended'] = 'Extended';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify Skroutz Analytics!';

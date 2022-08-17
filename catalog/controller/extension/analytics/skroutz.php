@@ -18,7 +18,7 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 		}
 	}
 
-	public function success(&$route, &$data, &$output)
+	public function loadCheckoutScript(&$route, &$data, &$output)
 	{
 		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_code')) {
 			if (isset($this->session->data['order_id'])) {
@@ -57,6 +57,19 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 					$output = str_replace('<footer>', $html, $output);
 				}
 			}
+		}
+	}
+
+	public function loadReviewsWidget(&$route, &$data, &$output)
+	{
+		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_widget')) {
+			if ($this->config->get('analytics_skroutz_widget') == 'inline') {
+				$widget = '<div id="skroutz-product-reviews-inline" data-product-id="' . $data['product_id'] . '"></div>';
+			} else {
+				$widget = '<div id="skroutz-product-reviews-extended" data-product-id="' . $data['product_id'] . '"></div>';
+			}
+
+			$output = str_replace('<div class="rating">', $widget . '<div class="rating">', $output);
 		}
 	}
 }

@@ -16,9 +16,12 @@ $_['text_edit']        = 'Επεξεργασία Skroutz Analytics';
 
 // Entry
 $_['entry_code']       = 'Αναγνωριστικό Λογαριασμού Καταστήματος';
+$_['entry_widget']     = 'Widget Αξιολογήσεων';
 $_['entry_status']     = 'Κατάσταση';
 
-$_['help_entry_code']  = 'SA-XXXX-YYYY';
+// Text
+$_['text_inline'] = 'Στη σειρά';
+$_['text_extended'] = 'Εκτεταμένο';
 
 // Error
 $_['error_permission'] = 'Προειδοποίηση: Δεν έχετε το δικαίωμα να επεξεργαστείτε το Skroutz Analytics!';

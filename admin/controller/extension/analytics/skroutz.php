@@ -73,6 +73,12 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 			$data['analytics_skroutz_code'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_code', $this->request->get['store_id']);
 		}
 
+		if (isset($this->request->post['analytics_skroutz_widget'])) {
+			$data['analytics_skroutz_widget'] = $this->request->post['analytics_skroutz_widget'];
+		} else {
+			$data['analytics_skroutz_widget'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_widget', $this->request->get['store_id']);
+		}
+
 		if (isset($this->request->post['analytics_skroutz_status'])) {
 			$data['analytics_skroutz_status'] = $this->request->post['analytics_skroutz_status'];
 		} else {
@@ -107,7 +113,9 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 		$this->load->model('setting/event');
 
 		$this->model_setting_event->deleteEventByCode('analytics_skroutz');
-		$this->model_setting_event->addEvent('analytics_skroutz', 'catalog/view/common/success/after', 'extension/analytics/skroutz/success');
+
+		$this->model_setting_event->addEvent('analytics_skroutz', 'catalog/view/common/success/after', 'extension/analytics/skroutz/loadCheckoutScript');
+		$this->model_setting_event->addEvent('analytics_skroutz', 'catalog/view/product/product/after', 'extension/analytics/skroutz/loadReviewsWidget');
 
 		// Permissions
 		$this->load->model('user/user_group');
