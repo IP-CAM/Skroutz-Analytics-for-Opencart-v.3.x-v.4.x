@@ -69,7 +69,17 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 				$widget = '<div id="skroutz-product-reviews-extended" data-product-id="' . $data['product_id'] . '"></div>';
 			}
 
-			$output = str_replace('<div class="rating">', $widget . '<div class="rating">', $output);
+			if ($this->config->get('analytics_skroutz_replace_html')) {
+				$replace = $this->config->get('analytics_skroutz_replace_html');
+			} else {
+				$replace = '<div class="rating">';
+			}
+
+			if ($this->config->get('analytics_skroutz_replace_position')) {
+				$output = str_replace($replace, $replace . $widget, $output);
+			} else {
+				$output = str_replace($replace, $widget . $replace, $output);
+			}
 		}
 	}
 }

@@ -73,16 +73,28 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 			$data['analytics_skroutz_code'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_code', $this->request->get['store_id']);
 		}
 
+		if (isset($this->request->post['analytics_skroutz_status'])) {
+			$data['analytics_skroutz_status'] = $this->request->post['analytics_skroutz_status'];
+		} else {
+			$data['analytics_skroutz_status'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_status', $this->request->get['store_id']);
+		}
+
 		if (isset($this->request->post['analytics_skroutz_widget'])) {
 			$data['analytics_skroutz_widget'] = $this->request->post['analytics_skroutz_widget'];
 		} else {
 			$data['analytics_skroutz_widget'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_widget', $this->request->get['store_id']);
 		}
 
-		if (isset($this->request->post['analytics_skroutz_status'])) {
-			$data['analytics_skroutz_status'] = $this->request->post['analytics_skroutz_status'];
+		if (isset($this->request->post['analytics_skroutz_replace_html'])) {
+			$data['analytics_skroutz_replace_html'] = $this->request->post['analytics_skroutz_replace_html'];
 		} else {
-			$data['analytics_skroutz_status'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_status', $this->request->get['store_id']);
+			$data['analytics_skroutz_replace_html'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_replace_html', $this->request->get['store_id']);
+		}
+
+		if (isset($this->request->post['analytics_skroutz_replace_position'])) {
+			$data['analytics_skroutz_replace_position'] = $this->request->post['analytics_skroutz_replace_position'];
+		} else {
+			$data['analytics_skroutz_replace_position'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_replace_position', $this->request->get['store_id']);
 		}
 
 		$data['header'] = $this->load->controller('common/header');
