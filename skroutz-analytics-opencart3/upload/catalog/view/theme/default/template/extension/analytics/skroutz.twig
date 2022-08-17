@@ -1,4 +1,5 @@
-<script>
+{% if analytics_skroutz_code %}
+<script type="text/javascript">
     (function(a,b,c,d,e,f,g){a['SkroutzAnalyticsObject']=e;a[e]= a[e] || function(){
         (a[e].q = a[e].q || []).push(arguments);};f=b.createElement(c);f.async=true;
         f.src=d;g=b.getElementsByTagName(c)[0];g.parentNode.insertBefore(f,g);
@@ -6,3 +7,4 @@
 
     skroutz_analytics('session', 'connect', '{{ analytics_skroutz_code }}');
 </script>
+{% endif %}

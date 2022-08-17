@@ -9,7 +9,7 @@
 
 class ModelExtensionAnalyticsSkroutz extends Model
 {
-	public function getOrder(int $order_id)
+	public function getOrder($order_id)
 	{
 		$query = "SELECT o.order_id, o.payment_code, o.payment_method,
         	MAX(CASE WHEN (ot.code = 'tax') THEN value END) AS tax,
@@ -17,7 +17,7 @@ class ModelExtensionAnalyticsSkroutz extends Model
         	MAX(CASE WHEN (ot.code = 'total') THEN value END) AS revenue
         FROM " . DB_PREFIX . "order o
             LEFT JOIN " . DB_PREFIX . "order_total ot ON ot.order_id = o.order_id
-        WHERE o.order_id = '" . $this->db->escape($order_id) . "'";
+        WHERE o.order_id = '" . $this->db->escape((int)$order_id) . "'";
 
 		return $this->db->query($query)->row;
 	}

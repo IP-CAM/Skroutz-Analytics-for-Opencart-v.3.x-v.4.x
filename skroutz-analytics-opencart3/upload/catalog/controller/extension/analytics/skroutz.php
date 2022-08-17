@@ -11,11 +11,13 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 {
 	public function index()
 	{
+		$data = [];
+
 		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_code')) {
 			$data['analytics_skroutz_code'] = $this->config->get('analytics_skroutz_code');
-
-			return $this->load->view('extension/analytics/skroutz', $data);
 		}
+
+		return $this->load->view('extension/analytics/skroutz', $data);
 	}
 
 	public function loadCheckoutScript(&$route, &$data, &$output)
