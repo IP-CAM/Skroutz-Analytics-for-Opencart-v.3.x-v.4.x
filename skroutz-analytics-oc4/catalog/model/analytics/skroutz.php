@@ -3,8 +3,8 @@
 /**
  * Shopflix Analytics
  * @author Prionysis
- * @website https://github.com/Prionysis
- * @version 1.1
+ * @link https://github.com/Prionysis
+ * @version 1.2
  */
 
 

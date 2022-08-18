@@ -3,8 +3,8 @@
 /**
  * Shopflix Analytics
  * @author Prionysis
- * @website https://github.com/Prionysis
- * @version 1.1
+ * @link https://github.com/Prionysis
+ * @version 1.2
  */
 
 class ControllerExtensionAnalyticsSkroutz extends Controller
@@ -58,35 +58,48 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 			'href' => $this->url->link('extension/analytics/skroutz', 'user_token=' . $this->session->data['user_token'] . '&store_id=' . $this->request->get['store_id'], true)
 		];
 
+		// Buttons
 		$data['action'] = $this->url->link('extension/analytics/skroutz', 'user_token=' . $this->session->data['user_token'] . '&store_id=' . $this->request->get['store_id'], true);
 		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=analytics', true);
 
 		$data['user_token'] = $this->session->data['user_token'];
 
+		// Code
 		if (isset($this->request->post['analytics_skroutz_code'])) {
 			$data['analytics_skroutz_code'] = $this->request->post['analytics_skroutz_code'];
 		} else {
 			$data['analytics_skroutz_code'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_code', $this->request->get['store_id']);
 		}
 
+		// Status
 		if (isset($this->request->post['analytics_skroutz_status'])) {
 			$data['analytics_skroutz_status'] = $this->request->post['analytics_skroutz_status'];
 		} else {
 			$data['analytics_skroutz_status'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_status', $this->request->get['store_id']);
 		}
 
-		if (isset($this->request->post['analytics_skroutz_widget'])) {
-			$data['analytics_skroutz_widget'] = $this->request->post['analytics_skroutz_widget'];
+		// Widget Status
+		if (isset($this->request->post['analytics_skroutz_widget_status'])) {
+			$data['analytics_skroutz_widget_status'] = $this->request->post['analytics_skroutz_widget_status'];
 		} else {
-			$data['analytics_skroutz_widget'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_widget', $this->request->get['store_id']);
+			$data['analytics_skroutz_widget_status'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_widget_status', $this->request->get['store_id']);
 		}
 
+		// Widget Type
+		if (isset($this->request->post['analytics_skroutz_widget_type'])) {
+			$data['analytics_skroutz_widget_type'] = $this->request->post['analytics_skroutz_widget_type'];
+		} else {
+			$data['analytics_skroutz_widget_type'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_widget_type', $this->request->get['store_id']);
+		}
+
+		// Widget Replace HTML
 		if (isset($this->request->post['analytics_skroutz_replace_html'])) {
 			$data['analytics_skroutz_replace_html'] = $this->request->post['analytics_skroutz_replace_html'];
 		} else {
 			$data['analytics_skroutz_replace_html'] = $this->model_setting_setting->getSettingValue('analytics_skroutz_replace_html', $this->request->get['store_id']);
 		}
 
+		// Widget Replace Position
 		if (isset($this->request->post['analytics_skroutz_replace_position'])) {
 			$data['analytics_skroutz_replace_position'] = $this->request->post['analytics_skroutz_replace_position'];
 		} else {

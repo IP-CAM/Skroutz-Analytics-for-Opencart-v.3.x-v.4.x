@@ -3,8 +3,8 @@
 /**
  * Shopflix Analytics
  * @author Prionysis
- * @website https://github.com/Prionysis
- * @version 1.1
+ * @link https://github.com/Prionysis
+ * @version 1.2
  */
 
 $_['heading_title'] = 'Skroutz Analytics';
@@ -25,7 +25,8 @@ $_['text_after'] = 'After';
 // Entry
 $_['entry_code'] = 'Shop Account ID';
 $_['entry_status'] = 'Status';
-$_['entry_widget'] = 'Reviews Widget';
+$_['entry_widget_status'] = 'Reviews Widget';
+$_['entry_widget_type'] = 'Widget Type';
 $_['entry_replace_html'] = 'Replace HTML';
 $_['entry_replace_position'] = 'Replace Position';
 

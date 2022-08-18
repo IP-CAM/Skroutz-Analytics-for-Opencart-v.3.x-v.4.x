@@ -3,8 +3,8 @@
 /**
  * Shopflix Analytics
  * @author Prionysis
- * @website https://github.com/Prionysis
- * @version 1.1
+ * @link https://github.com/Prionysis
+ * @version 1.2
  */
 
 $_['heading_title'] = 'Skroutz Analytics';
@@ -25,7 +25,8 @@ $_['text_after'] = 'Μετά';
 // Entry
 $_['entry_code'] = 'Αναγνωριστικό Λογαριασμού Καταστήματος';
 $_['entry_status'] = 'Κατάσταση';
-$_['entry_widget'] = 'Widget Αξιολογήσεων';
+$_['entry_widget_status'] = 'Widget Αξιολογήσεων';
+$_['entry_widget_type'] = 'Τύπος Widget';
 $_['entry_replace_html'] = 'Αντικατάσταση HTML';
 $_['entry_replace_position'] = 'Θέση Αντικατάστασης';
 

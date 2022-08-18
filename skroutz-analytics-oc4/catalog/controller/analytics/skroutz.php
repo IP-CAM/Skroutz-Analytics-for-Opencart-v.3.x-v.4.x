@@ -3,8 +3,8 @@
 /**
  * Shopflix Analytics
  * @author Prionysis
- * @website https://github.com/Prionysis
- * @version 1.1
+ * @link https://github.com/Prionysis
+ * @version 1.2
  */
 
 namespace Opencart\Catalog\Controller\Extension\SkroutzAnalytics\Analytics;
@@ -21,13 +21,11 @@ class Skroutz extends Controller
 			$data['analytics_skroutz_code'] = $this->config->get('analytics_skroutz_code');
 		}
 
-		var_dump('index');
 		return $this->load->view('extension/skroutz_analytics/analytics/skroutz', $data);
 	}
 
 	public function loadCheckoutScript(&$route, &$data, &$output): void
 	{
-		var_dump('loadCheckoutScript');
 		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_code')) {
 			if (isset($this->session->data['order_id'])) {
 				$order_id = $this->session->data['order_id'];
@@ -70,16 +68,15 @@ class Skroutz extends Controller
 
 	public function loadReviewsWidget(&$route, &$data, &$output): void
 	{
-		var_dump('loadReviewsWidget');
-		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_widget')) {
-			if ($this->config->get('analytics_skroutz_widget') == 'inline') {
+		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_widget_status')) {
+			if ($this->config->get('analytics_skroutz_widget_type') == 'inline') {
 				$widget = '<div id="skroutz-product-reviews-inline" data-product-id="' . $data['product_id'] . '"></div>';
 			} else {
 				$widget = '<div id="skroutz-product-reviews-extended" data-product-id="' . $data['product_id'] . '"></div>';
 			}
 
 			if ($this->config->get('analytics_skroutz_replace_html')) {
-				$replace = $this->config->get('analytics_skroutz_replace_html');
+				$replace = html_entity_decode($this->config->get('analytics_skroutz_replace_html'));
 			} else {
 				$replace = '<div class="rating">';
 			}

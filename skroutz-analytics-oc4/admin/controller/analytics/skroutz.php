@@ -3,8 +3,8 @@
 /**
  * Shopflix Analytics
  * @author Prionysis
- * @website https://github.com/Prionysis
- * @version 1.1
+ * @link https://github.com/Prionysis
+ * @version 1.2
  */
 
 namespace Opencart\Admin\Controller\Extension\SkroutzAnalytics\Analytics;
@@ -47,13 +47,16 @@ class Skroutz extends Controller
 		// Status
 		$data['analytics_skroutz_status'] = $this->model_setting_setting->getValue('analytics_skroutz_status', $this->request->get['store_id']);
 
-		// Widget
-		$data['analytics_skroutz_widget'] = $this->model_setting_setting->getValue('analytics_skroutz_widget', $this->request->get['store_id']);
+		// Widget Status
+		$data['analytics_skroutz_widget_status'] = $this->model_setting_setting->getValue('analytics_skroutz_widget_status', $this->request->get['store_id']);
 
-		// Replace HTML
+		// Widget Type
+		$data['analytics_skroutz_widget_type'] = $this->model_setting_setting->getValue('analytics_skroutz_widget_type', $this->request->get['store_id']);
+
+		// Widget Replace HTML
 		$data['analytics_skroutz_replace_html'] = $this->model_setting_setting->getValue('analytics_skroutz_replace_html', $this->request->get['store_id']);
 
-		// Replace Position
+		// Widget Replace Position
 		$data['analytics_skroutz_replace_position'] = $this->model_setting_setting->getValue('analytics_skroutz_replace_position', $this->request->get['store_id']);
 
 		$data['header'] = $this->load->controller('common/header');
