@@ -1,2 +1,16 @@
 # Skroutz Analytics
-OpenCart Extension that enables Skroutz Analytics to track orders
+This extension doesn't use OCMOD, instead it uses the new event system.
+
+## Product Reviews
+The "Skroutz Product Reviews" widgets are displayed in your website, providing product-related Skroutz content.
+
+## Save Your Order
+After completing their purchases, customers are prompted to save their order, through a widget on the checkout page.
+
+## Skroutz Partner Badge
+The "Skroutz Partner Badge" is displayed on your website, providing shop-related Skroutz content upon click.
+
+## Compatibility
+The extension is compatible with the following versions:
+- OpenCart 4.x
+- OpenCart 3.x
