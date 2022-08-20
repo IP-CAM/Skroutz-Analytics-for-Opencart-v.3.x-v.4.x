@@ -2,7 +2,7 @@
 
 /**
  * Shopflix Analytics
- * @author Prionysis
+ * @author Dionysis Pasenidis
  * @link https://github.com/Prionysis
  * @version 1.2
  */
