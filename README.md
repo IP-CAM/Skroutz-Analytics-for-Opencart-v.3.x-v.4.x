@@ -1,6 +1,8 @@
 # Skroutz Analytics
 This extension doesn't use OCMOD, instead it uses the new event system.
 
+You may download this extension through the OpenCart Marketplace by clicking [here](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=44079)
+
 ## Product Reviews
 The "Skroutz Product Reviews" widgets are displayed in your website, providing product-related Skroutz content.
 
