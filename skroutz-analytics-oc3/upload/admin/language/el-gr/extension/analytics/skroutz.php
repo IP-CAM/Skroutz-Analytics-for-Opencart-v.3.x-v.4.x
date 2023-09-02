@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Shopflix Analytics
+ * Skroutz Analytics
  * @author Dionysis Pasenidis
  * @link https://github.com/Prionysis
  * @version 1.2
