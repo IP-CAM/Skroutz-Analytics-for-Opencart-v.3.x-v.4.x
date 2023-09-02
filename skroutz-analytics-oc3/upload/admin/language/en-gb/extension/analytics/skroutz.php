@@ -7,33 +7,35 @@
  * @version 1.2
  */
 
-$_['heading_title'] = 'Skroutz Analytics';
+$_ = [
+    'heading_title'          => 'Skroutz Analytics',
 
-// Tab
-$_['tab_general'] = 'Γενικά';
-$_['tab_widget'] = 'Widget';
+    // Tab
+    'tab_general'            => 'Γενικά',
+    'tab_widget'             => 'Widget',
 
-// Text
-$_['text_extension'] = 'Extensions';
-$_['text_success'] = 'Success: You have modified Skroutz Analytics!';
-$_['text_edit'] = 'Edit Skroutz Analytics';
-$_['text_inline'] = 'Inline';
-$_['text_extended'] = 'Extended';
-$_['text_before'] = 'Before';
-$_['text_after'] = 'After';
+    // Text
+    'text_extension'         => 'Extensions',
+    'text_success'           => 'Success: You have modified Skroutz Analytics!',
+    'text_edit'              => 'Edit Skroutz Analytics',
+    'text_inline'            => 'Inline',
+    'text_extended'          => 'Extended',
+    'text_before'            => 'Before',
+    'text_after'             => 'After',
 
-// Entry
-$_['entry_code'] = 'Shop Account ID';
-$_['entry_status'] = 'Status';
-$_['entry_widget_status'] = 'Reviews Widget';
-$_['entry_widget_type'] = 'Widget Type';
-$_['entry_replace_html'] = 'Replace HTML';
-$_['entry_replace_position'] = 'Replace Position';
+    // Entry
+    'entry_code'             => 'Shop Account ID',
+    'entry_status'           => 'Status',
+    'entry_widget_status'    => 'Reviews Widget',
+    'entry_widget_type'      => 'Widget Type',
+    'entry_replace_html'     => 'Replace HTML',
+    'entry_replace_position' => 'Replace Position',
 
-// Help
-$_['help_replace_html'] = 'The HTML code to find and put the widget. Make sure you choose something unique, as it will replace all instances of the HTML code.';
-$_['help_replace_position'] = 'The position to put the widget in the found HTML code.';
+    // Help
+    'help_replace_html'      => 'The HTML code to find and put the widget. Make sure you choose something unique, as it will replace all instances of the HTML code.',
+    'help_replace_position'  => 'The position to put the widget in the found HTML code.',
 
-// Error
-$_['error_permission'] = 'Warning: You do not have permission to modify Skroutz Analytics!';
-$_['error_code'] = 'Shop Account ID required!';
+    // Error
+    'error_permission'       => 'Warning: You do not have permission to modify Skroutz Analytics!',
+    'error_code'             => 'Shop Account ID required!',
+];
