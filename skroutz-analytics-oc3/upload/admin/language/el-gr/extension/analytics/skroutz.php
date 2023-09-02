@@ -14,7 +14,7 @@ $_['tab_general'] = 'Γενικά';
 $_['tab_widget'] = 'Widget';
 
 // Text
-$_['text_extension'] = 'Επεκετάσεις';
+$_['text_extension'] = 'Επεκτάσεις';
 $_['text_success'] = 'Επιτυχία: Επεξεργαστήκατε με επιτυχία το Skroutz Analytics!';
 $_['text_edit'] = 'Επεξεργασία Skroutz Analytics';
 $_['text_inline'] = 'Στη σειρά';

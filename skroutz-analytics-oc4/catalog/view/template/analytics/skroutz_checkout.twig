@@ -1,5 +1,5 @@
 <script>
-    skroutz('ecommerce', 'addOrder', {
+    skroutz_analytics('ecommerce', 'addOrder', {
         order_id:      '{{ skroutz.order_id }}',
         revenue:       '{{ skroutz.revenue }}',
         shipping:      '{{ skroutz.shipping }}',
@@ -9,7 +9,7 @@
     });
 
     {% for product in skroutz.products %}
-    skroutz('ecommerce', 'addItem', {
+    skroutz_analytics('ecommerce', 'addItem', {
         order_id:   '{{ skroutz.order_id }}',
         product_id: '{{ product.product_id }}',
         name:       '{{ product.name }}',
