@@ -20,6 +20,11 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
             </div>
         {% endif %}
+        {% if success %}
+            <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
@@ -35,7 +40,7 @@
                             <div class="form-group required">
                                 <label class="col-sm-2 control-label" for="input-code">{{ entry_code }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="analytics_skroutz_code" value="{{ analytics_skroutz_code }}" placeholder="{{ entry_code }}" id="input-code" class="form-control"/>
+                                    <input type="text" name="analytics_skroutz_code" value="{{ code }}" placeholder="{{ entry_code }}" id="input-code" class="form-control"/>
                                     {% if error_code %}
                                         <div class="text-danger">{{ error_code }}</div>
                                     {% endif %}
@@ -45,8 +50,8 @@
                                 <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
                                 <div class="col-sm-10">
                                     <select name="analytics_skroutz_status" id="input-status" class="form-control">
-                                        <option value="1" {% if analytics_skroutz_status %} selected {% endif %}>{{ text_enabled }}</option>
-                                        <option value="0" {% if not analytics_skroutz_status %} selected {% endif %}>{{ text_disabled }}</option>
+                                        <option value="1" {% if status %} selected {% endif %}>{{ text_enabled }}</option>
+                                        <option value="0" {% if not status %} selected {% endif %}>{{ text_disabled }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -56,8 +61,8 @@
                                 <label class="col-sm-2 control-label" for="input-widget-status">{{ entry_widget_status }}</label>
                                 <div class="col-sm-10">
                                     <select name="analytics_skroutz_widget_status" id="input-widget-status" class="form-control">
-                                        <option value="1" {% if analytics_skroutz_widget_status %} selected {% endif %}>{{ text_enabled }}</option>
-                                        <option value="0" {% if not analytics_skroutz_widget_status %} selected {% endif %}>{{ text_disabled }}</option>
+                                        <option value="1" {% if widget_status %} selected {% endif %}>{{ text_enabled }}</option>
+                                        <option value="0" {% if not widget_status %} selected {% endif %}>{{ text_disabled }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -65,8 +70,8 @@
                                 <label class="col-sm-2 control-label" for="input-widget-type">{{ entry_widget_type }}</label>
                                 <div class="col-sm-10">
                                     <select name="analytics_skroutz_widget_type" id="input-widget-type" class="form-control">
-                                        <option value="inline" {% if analytics_skroutz_widget == 'inline' %} selected {% endif %}>{{ text_inline }}</option>
-                                        <option value="extended" {% if analytics_skroutz_widget == 'extended' %} selected {% endif %}>{{ text_extended }}</option>
+                                        <option value="inline" {% if widget_type == 'inline' %} selected {% endif %}>{{ text_inline }}</option>
+                                        <option value="extended" {% if widget_type == 'extended' %} selected {% endif %}>{{ text_extended }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -75,7 +80,7 @@
                                     <span data-toggle="tooltip" title="{{ help_replace_html }}">{{ entry_replace_html }}</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="analytics_skroutz_replace_html" value="{{ analytics_skroutz_replace_html }}" placeholder="{{ entry_replace_html }}" id="input-replace-html" class="form-control"/>
+                                    <input type="text" name="analytics_skroutz_replace_html" value="{{ replace_html }}" placeholder="{{ entry_replace_html }}" id="input-replace-html" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,8 +89,8 @@
                                 </label>
                                 <div class="col-sm-10">
                                     <select name="analytics_skroutz_replace_position" id="input-replace-position" class="form-control">
-                                        <option value="after" {% if analytics_skroutz_replace_position == 'after' %} selected {% endif %}>{{ text_after }}</option>
-                                        <option value="before" {% if analytics_skroutz_replace_position == 'before' %} selected {% endif %}>{{ text_before }}</option>
+                                        <option value="after" {% if eplace_position == 'after' %} selected {% endif %}>{{ text_after }}</option>
+                                        <option value="before" {% if eplace_position == 'before' %} selected {% endif %}>{{ text_before }}</option>
                                     </select>
                                 </div>
                             </div>

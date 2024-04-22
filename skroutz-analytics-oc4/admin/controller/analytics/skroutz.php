@@ -4,7 +4,7 @@
  * Skroutz Analytics
  * @author Dionysis Pasenidis
  * @link https://github.com/Prionysis
- * @version 1.2
+ * @version 1.3
  */
 
 namespace Opencart\Admin\Controller\Extension\SkroutzAnalytics\Analytics;
@@ -84,27 +84,6 @@ class Skroutz extends \Opencart\System\Engine\Controller
             $this->model_setting_setting->editSetting('analytics_skroutz', $this->request->post, $this->request->get['store_id']);
 
             $this->session->data['success'] = $this->language->get('text_success');
-            $this->model_setting_event->deleteEventByCode('analytics_skroutz');
-
-
-            $this->model_setting_event->addEvent([
-                'code'        => 'analytics_skroutz',
-                'description' => '',
-                'trigger'     => 'catalog/view/common/success/after',
-                'action'      => 'extension/skroutz_analytics/analytics/skroutz|loadCheckoutScript',
-                'status'      => true,
-                'sort_order'  => 1,
-            ]);
-
-
-            $this->model_setting_event->addEvent([
-                'code'        => 'analytics_skroutz',
-                'description' => '',
-                'trigger'     => 'catalog/view/product/product/after',
-                'action'      => 'extension/skroutz_analytics/analytics/skroutz|loadReviewsWidget',
-                'status'      => true,
-                'sort_order'  => 1,
-            ]);
         }
 
         $this->response->addHeader('Content-Type: application/json');

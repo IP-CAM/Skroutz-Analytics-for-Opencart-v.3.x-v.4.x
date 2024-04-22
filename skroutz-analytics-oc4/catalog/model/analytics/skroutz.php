@@ -4,7 +4,7 @@
  * Skroutz Analytics
  * @author Dionysis Pasenidis
  * @link https://github.com/Prionysis
- * @version 1.2
+ * @version 1.3
  */
 
 
@@ -24,8 +24,7 @@ class Skroutz extends \Opencart\System\Engine\Model
                 MAX(CASE WHEN (ot.code = 'total') THEN value END) AS revenue
             FROM {$this->getTable('order')} o
                 LEFT JOIN {$this->getTable('order_total')} ot USING (order_id)
-            WHERE 
-                o.order_id = $order_id
+            WHERE o.order_id = {$order_id} 
         ");
 
         return $query->row;
@@ -41,8 +40,7 @@ class Skroutz extends \Opencart\System\Engine\Model
         	    (op.price + op.tax) AS price
             FROM {$this->getTable('order_product')} op
         	    LEFT JOIN {$this->getTable('order_option')} oo USING (order_product_id)
-            WHERE 
-                op.order_id = $order_id 
+            WHERE op.order_id = {$order_id} 
             GROUP BY op.product_id
         ");
 
