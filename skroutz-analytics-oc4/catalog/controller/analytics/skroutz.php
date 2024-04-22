@@ -4,7 +4,7 @@
  * Skroutz Analytics
  * @author Dionysis Pasenidis
  * @link https://github.com/Prionysis
- * @version 1.2
+ * @version 1.3
  */
 
 namespace Opencart\Catalog\Controller\Extension\SkroutzAnalytics\Analytics;
@@ -13,79 +13,81 @@ use Opencart\System\Engine\Controller;
 
 class Skroutz extends Controller
 {
-	public function index(): string
-	{
-		$data = [];
+    private string $code;
+    private bool $status;
 
-		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_code')) {
-			$data['analytics_skroutz_code'] = $this->config->get('analytics_skroutz_code');
-		}
+    public function __construct($registry)
+    {
+        parent::__construct($registry);
 
-		return $this->load->view('extension/skroutz_analytics/analytics/skroutz', $data);
-	}
+        $this->code = $this->config->get('analytics_skroutz_code');
+        $this->status = (bool)$this->config->get('analytics_skroutz_status');
+    }
 
-	public function loadCheckoutScript(&$route, &$data, &$output): void
-	{
-		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_code')) {
-			if (isset($this->session->data['order_id'])) {
-				$order_id = $this->session->data['order_id'];
-			} else if (isset($this->request->get['order_id'])) {
-				$order_id = $this->request->get['order_id'];
-			} else {
-				$order_id = null;
-			}
+    public function index(): string
+    {
+        if (!$this->status || !$this->code) {
+            return '';
+        }
 
-			if ($order_id) {
-				$this->load->model('extension/skroutz_analytics/analytics/skroutz');
+        return $this->load->view('extension/skroutz_analytics/analytics/skroutz', [
+            'code' => $this->config->get('analytics_skroutz_code'),
+        ]);
+    }
 
-				$order = $this->model_extension_skroutz_analytics_analytics_skroutz->getOrder($order_id);
+    public function loadCheckoutScript(string &$route, array &$args, string &$output): void
+    {
+        if (!$this->status || !$this->code) {
+            return;
+        }
 
-				if (isset($order)) {
-					if (!isset($order['shipping'])) {
-						$order['shipping'] = 0;
-					}
+        $order_id = $this->session->data['skroutz_order_id'] ?? $this->session->data['order_id'] ?? $this->request->get['order_id'] ?? null;
 
-					if (!isset($order['tax'])) {
-						$order['tax'] = 0;
-					}
+        if (!$order_id) {
+            return;
+        }
 
-					$data['skroutz']['order_id'] = $order['order_id'];
-					$data['skroutz']['revenue'] = $order['revenue'];
-					$data['skroutz']['shipping'] = $order['shipping'];
-					$data['skroutz']['tax'] = $order['tax'];
-					$data['skroutz']['paid_by'] = $order['payment_code'];
-					$data['skroutz']['paid_by_descr'] = $order['payment_method'];
-					$data['skroutz']['products'] = $this->model_extension_skroutz_analytics_analytics_skroutz->getOrderProducts($order_id);
+        $this->load->model('extension/skroutz_analytics/analytics/skroutz');
 
-					$html = $this->load->view('extension/skroutz_analytics/analytics/skroutz_checkout', $data);
-					$html .= '<footer>';
+        $order = $this->model_extension_skroutz_analytics_analytics_skroutz->getOrder($order_id);
 
-					$output = str_replace('<footer>', $html, $output);
-				}
-			}
-		}
-	}
+        if (!$order) {
+            return;
+        }
 
-	public function loadReviewsWidget(&$route, &$data, &$output): void
-	{
-		if ($this->config->get('analytics_skroutz_status') && $this->config->get('analytics_skroutz_widget_status')) {
-			if ($this->config->get('analytics_skroutz_widget_type') == 'inline') {
-				$widget = '<div id="skroutz-product-reviews-inline" data-product-id="' . $data['product_id'] . '"></div>';
-			} else {
-				$widget = '<div id="skroutz-product-reviews-extended" data-product-id="' . $data['product_id'] . '"></div>';
-			}
+        $data['order_id'] = $order['order_id'];
+        $data['revenue'] = $order['revenue'];
+        $data['shipping'] = $order['shipping'] ?? 0;
+        $data['tax'] = $order['tax'] ?? 0;
+        $data['paid_by'] = $order['payment_code'];
+        $data['paid_by_descr'] = $order['payment_method'];
+        $data['products'] = $this->model_extension_skroutz_analytics_analytics_skroutz->getOrderProducts($order_id);
 
-			if ($this->config->get('analytics_skroutz_replace_html')) {
-				$replace = html_entity_decode($this->config->get('analytics_skroutz_replace_html'));
-			} else {
-				$replace = '<div class="rating">';
-			}
+        $output = str_replace('<footer>', $this->load->view('extension/skroutz_analytics/analytics/skroutz_checkout', $data) . '<footer>', $output);
+    }
 
-			if ($this->config->get('analytics_skroutz_replace_position')) {
-				$output = str_replace($replace, $replace . $widget, $output);
-			} else {
-				$output = str_replace($replace, $widget . $replace, $output);
-			}
-		}
-	}
+    public function loadReviewsWidget(string &$route, array &$args, string &$output): void
+    {
+        if (!$this->status || !$this->code) {
+            return;
+        }
+
+        if ($this->config->get('analytics_skroutz_widget_type') == 'inline') {
+            $widget = '<div id="skroutz-product-reviews-inline" data-product-id="' . $args['product_id'] . '"></div>';
+        } else {
+            $widget = '<div id="skroutz-product-reviews-extended" data-product-id="' . $args['product_id'] . '"></div>';
+        }
+
+        if ($this->config->get('analytics_skroutz_replace_html')) {
+            $replace = html_entity_decode($this->config->get('analytics_skroutz_replace_html'));
+        } else {
+            $replace = '<div class="rating">';
+        }
+
+        if ($this->config->get('analytics_skroutz_replace_position')) {
+            $output = str_replace($replace, $replace . $widget, $output);
+        } else {
+            $output = str_replace($replace, $widget . $replace, $output);
+        }
+    }
 }

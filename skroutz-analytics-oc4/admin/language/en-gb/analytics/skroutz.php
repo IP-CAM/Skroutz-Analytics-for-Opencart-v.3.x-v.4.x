@@ -4,7 +4,7 @@
  * Skroutz Analytics
  * @author Dionysis Pasenidis
  * @link https://github.com/Prionysis
- * @version 1.2
+ * @version 1.3
  */
 
 $_ = [
