@@ -11,8 +11,3 @@ After completing their purchases, customers are prompted to save their order, th
 
 ## Skroutz Partner Badge
 The "Skroutz Partner Badge" is displayed on your website, providing shop-related Skroutz content upon click.
-
-## Compatibility
-The extension is compatible with the following versions:
-- OpenCart 4.x
-- OpenCart 3.x

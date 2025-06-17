@@ -37,7 +37,7 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
 
     private const EVENTS = [
         'catalog/controller/checkout/success/before' => 'extension/analytics/skroutz/controllerCheckoutSuccessBefore',
-        'catalog/view/common/success/after'          => 'extension/analytics/skroutz/viewCommonSuccessAfter',
+        'catalog/view/common/success/before'         => 'extension/analytics/skroutz/viewCommonSuccessBefore',
         'catalog/view/product/product/after'         => 'extension/analytics/skroutz/viewProductProductAfter',
     ];
 

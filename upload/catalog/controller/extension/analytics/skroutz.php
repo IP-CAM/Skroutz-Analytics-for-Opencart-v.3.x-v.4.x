@@ -34,7 +34,7 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
         $this->session->data['skroutz_order_id'] = $this->session->data['order_id'] ?? null;
     }
 
-    public function viewCommonSuccessAfter(string &$route, array $args, string &$output): void
+    public function viewCommonSuccessBefore(string $route, array &$args): void
     {
         if (!$this->config->get('analytics_skroutz_status')) {
             return;
@@ -54,20 +54,20 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
             return;
         }
 
-        $output = str_replace('<footer>', $this->load->view('extension/analytics/skroutz_checkout', [
-                'order_id'      => (int)$order['order_id'],
-                'revenue'       => (float)$order['revenue'],
-                'shipping'      => (float)$order['shipping'],
-                'tax'           => (float)$order['tax'],
-                'paid_by'       => $order['payment_code'],
-                'paid_by_descr' => $order['payment_method'],
-                'products'      => $this->model_extension_analytics_skroutz->getOrderProducts($order_id),
-            ]) . '<footer>', $output);
+        $data = [
+            'order_id'      => (int)$order['order_id'],
+            'revenue'       => (float)$order['revenue'],
+            'shipping'      => (float)$order['shipping'],
+            'tax'           => (float)$order['tax'],
+            'paid_by'       => $order['payment_code'],
+            'paid_by_descr' => $order['payment_method'],
+            'products'      => $this->model_extension_analytics_skroutz->getOrderProducts($order_id),
+        ];
 
-        unset($this->session->data['skroutz_order_id']);
+        $args['footer'] = $this->load->view('extension/analytics/skroutz_checkout', $data) . $args['footer'];
     }
 
-    public function viewProductProductAfter(string &$route, array $args, string &$output): void
+    public function viewProductProductAfter(string $route, array $args, string &$output): void
     {
         if (!$this->config->get('analytics_skroutz_status')) {
             return;
