@@ -20,8 +20,8 @@ class ModelExtensionAnalyticsSkroutz extends Model
                 MAX(CASE WHEN ot.code = 'tax' THEN ot.value END) AS tax,
                 MAX(CASE WHEN ot.code = 'shipping' THEN ot.value END) AS shipping,
                 MAX(CASE WHEN ot.code = 'total' THEN ot.value END) AS revenue
-            FROM {$this->getTable('order')} o
-                LEFT JOIN {$this->getTable('order_total')} ot USING (order_id)
+            FROM `" . DB_PREFIX . "order` o
+                LEFT JOIN `" . DB_PREFIX . "order_total` ot USING (order_id)
             WHERE o.order_id = {$order_id} 
         ");
 
@@ -36,17 +36,12 @@ class ModelExtensionAnalyticsSkroutz extends Model
                 op.quantity, 
         	    CONCAT(op.name, COALESCE(CONCAT(' - ', GROUP_CONCAT(DISTINCT oo.value ORDER BY oo.value SEPARATOR ', ')), '')) AS name,
         	    (op.price + op.tax) AS price
-            FROM {$this->getTable('order_product')} op
-        	    LEFT JOIN {$this->getTable('order_option')} oo USING (order_product_id)
+            FROM `" . DB_PREFIX . "order_product` op
+        	    LEFT JOIN `" . DB_PREFIX . "order_option` oo USING (order_product_id)
             WHERE op.order_id = {$order_id} 
             GROUP BY op.product_id
         ");
 
         return $query->rows;
-    }
-
-    private function getTable(string $table): string
-    {
-        return $this->db->escape(DB_PREFIX . $table);
     }
 }

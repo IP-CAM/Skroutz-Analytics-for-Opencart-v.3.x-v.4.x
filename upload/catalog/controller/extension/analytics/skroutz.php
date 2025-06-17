@@ -31,40 +31,38 @@ class ControllerExtensionAnalyticsSkroutz extends Controller
             return;
         }
 
-        $this->session->data['skroutz_order_id'] = $this->session->data['order_id'] ?? null;
+        $this->session->data['skroutz_order_id'] = $this->session->data['order_id'] ?? 0;
     }
 
     public function viewCommonSuccessBefore(string $route, array &$args): void
     {
-        if (!$this->config->get('analytics_skroutz_status')) {
-            return;
-        }
-
         $order_id = $this->session->data['skroutz_order_id'] ?? 0;
 
-        if (!$order_id) {
+        if (!$order_id || !$this->config->get('analytics_skroutz_status')) {
             return;
         }
 
         $this->load->model('extension/analytics/skroutz');
 
-        $order = $this->model_extension_analytics_skroutz->getOrder($order_id);
+        $order_info = $this->model_extension_analytics_skroutz->getOrder($order_id);
 
-        if (!$order) {
+        if (!$order_info) {
             return;
         }
 
         $data = [
-            'order_id'      => (int)$order['order_id'],
-            'revenue'       => (float)$order['revenue'],
-            'shipping'      => (float)$order['shipping'],
-            'tax'           => (float)$order['tax'],
-            'paid_by'       => $order['payment_code'],
-            'paid_by_descr' => $order['payment_method'],
+            'order_id'      => (int)$order_info['order_id'],
+            'revenue'       => (float)$order_info['sub_total'] + (float)$order_info['tax'] + (float)$order_info['shipping'],
+            'shipping'      => (float)$order_info['shipping'],
+            'tax'           => (float)$order_info['tax'],
+            'paid_by'       => $order_info['payment_code'],
+            'paid_by_descr' => $order_info['payment_method'],
             'products'      => $this->model_extension_analytics_skroutz->getOrderProducts($order_id),
         ];
 
         $args['footer'] = $this->load->view('extension/analytics/skroutz_checkout', $data) . $args['footer'];
+
+        unset($this->session->data['skroutz_order_id']);
     }
 
     public function viewProductProductAfter(string $route, array $args, string &$output): void

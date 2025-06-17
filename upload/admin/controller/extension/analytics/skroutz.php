@@ -6,18 +6,18 @@
  * @link https://github.com/Prionysis
  * @version 1.3
  *
+ * @property Url $url
  * @property Loader $load
  * @property Config $config
  * @property Session $session
  * @property Request $request
+ * @property Response $response
+ * @property Language $language
+ * @property Document $document
+ * @property Cart\User $user
  * @property ModelSettingSetting $model_setting_setting
  * @property ModelUserUserGroup $model_user_user_group
  * @property ModelSettingEvent $model_setting_event
- * @property Language $language
- * @property Document $document
- * @property Url $url
- * @property Response $response
- * @property User $user
  */
 class ControllerExtensionAnalyticsSkroutz extends Controller
 {
